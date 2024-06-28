@@ -1,0 +1,23 @@
+@import './common/variables.scss';
+@import "bootstrap/scss/bootstrap";
+// @import 'bootstrap-icons/font/bootstrap-icons';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+#app {
+    font-weight: 600;
+
+    nav {
+        &.navbar {
+            background-color: #e3f2fd !important;
+        }
+    }
+
+    footer {
+        background-color: #e3f2fd !important;
+    }
+
+    h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+    }
+}

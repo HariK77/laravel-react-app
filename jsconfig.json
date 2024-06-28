@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./resources/js",
+        "paths": {
+            "@Pages/*": [
+                "./pages/*"
+            ],
+            "@Api/*": [
+                "./api/*"
+            ],
+            "@Components/*": [
+                "./components/*"
+            ],
+            "@Utils/*": [
+                "./utils/*"
+            ],
+            "@Helpers/*": [
+                "./helpers/*"
+            ],
+            "@Context/*": [
+                "./context/*"
+            ],
+        }
+    },
+}
