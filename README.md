@@ -34,45 +34,86 @@ docker run --rm \
 
 
 Start the Docker containers:
-- `./vendor/bin/sail up`
+```bash
+./vendor/bin/sail up
+```
 
 Install composer dependencies:
-- `./vendor/bin/sail composer install`
+```bash
+./vendor/bin/sail composer install
+```
 
 Install Node dependencies:
-- `./vendor/bin/sail npm install`
+```bash
+./vendor/bin/sail npm install
+```
   
 Generate Key
-- Run `./vendor/bin/sail artisan key:generate`
+```bash
+./vendor/bin/sail artisan key:generate
+```
   
 ### Manual Setup
 
 Install composer dependencies:
-- `composer install`
+```bash 
+composer install
+```
 
 Install Node dependencies:
-- `npm install`
+```bash 
+npm install
+```
 
 Generate Key
-- Run `php artisan key:generate`
+```bash 
+php artisan key:generate
+```
 
 ## Running the application
 
 Run database migrations:
-- Using Sail: `./vendor/bin/sail artisan migrate`
-- Without Sail: `php artisan migrate`
+- Using Sail: 
+```bash
+./vendor/bin/sail artisan migrate
+```
+- Without Sail: 
+```bash
+php artisan migrate
+```
   
 Seed the database:
-- Using Sail: `./vendor/bin/sail artisan db:seed`
-- Without Sail: `php artisan db:seed`
+- Using Sail: 
+```bash
+./vendor/bin/sail artisan db:seed
+```
+- Without Sail: 
+```bash
+php artisan db:seed
+```
 
 run npm serve:
-- Using Sail: `./vendor/bin/sail npm run dev`
-- Without Sail: `npm run dev`
+- Using Sail: 
+```bash
+./vendor/bin/sail npm run dev
+```
+- Without Sail: 
+```bash
+npm run dev
+```
   
 Running PHP Server:
-- Using Sail: `./vendor/bin/sail down` and then run `./vendor/bin/sail up`
-- Without Sail: `php artisan serve`
+- Using Sail: (If it's already running down it)
+```bash
+./vendor/bin/sail down
+```
+```bash
+./vendor/bin/sail up
+```
+- Without Sail: 
+```bash
+php artisan serve
+```
 
 And then access `http://locahost`
 
