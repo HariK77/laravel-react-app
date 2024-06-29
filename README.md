@@ -6,15 +6,19 @@ This is a simple boiler plate application developed in [Laravel](https://laravel
 # Installation Instructions
 
 ## Prerequisites
-- Manual setup - PHP 8.1 or above, Node 18 or above and any sql database
+- Manual setup - PHP 8.1 or above, Node 18 or above Composer 2 or above and any sql database
 - With Docker - Docker with root access
 
 ## Environment Setup
-Change into project directory before running any commands
-- `cd /laravel-react-api`
+- Change into project directory before running any commands
+```bash
+cd laravel-react-api
+```
   
-Rename the .env.example file .env
-- `cp .env.example .env`
+- Rename the .env.example file .env
+```bash
+cp .env.example .env
+```
 
 - (Note) For Manual way configure your database connection settings
 
