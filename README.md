@@ -21,7 +21,7 @@ Rename the .env.example file .env
 ## Setup Methods
 
 ### Docker Setup
-    Run this for insatalling php composer packages to run sail
+Run this for insatalling php composer packages to run sail
 `
 docker run --rm \
     -u "$(id -u):$(id -g)" \
