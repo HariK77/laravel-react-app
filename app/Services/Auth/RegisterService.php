@@ -34,7 +34,7 @@ class RegisterService
         try {
             $data = [...$this->request->validated()];
             $data['profile_image'] = UploadHelper::fileUpload('uploads/profile', $data['profile_image']);
-            User::create($data);
+            $this->user->create($data);
 
             $result['message'] = 'User registered successfully.';
             $result['code'] = Response::HTTP_CREATED;

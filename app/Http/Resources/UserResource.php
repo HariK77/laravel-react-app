@@ -21,8 +21,6 @@ class UserResource extends JsonResource
             'profileImage' => $this->profile_image,
             'speakingLanguages' => $this->speaking_languages,
             'gender' => $this->gender,
-            // 'createdAt' => $this->created_at->diffForHumans(),
-            // 'updatedAt' => $this->updated_at->diffForHumans(),
         ];
     }
 }

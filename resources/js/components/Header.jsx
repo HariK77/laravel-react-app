@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ProfileContext, authBaseObject } from "@Context/profileContext";
-import { CommonApi } from "@Api/index";
+import { BaseApi } from "@Api/index";
 import { deleteCookie } from "@Helpers/cookie";
 
 const Header = () => {
@@ -11,7 +11,7 @@ const Header = () => {
     const { profile, setProfile } = useContext(ProfileContext);
 
     const handleLogout = () => {
-        CommonApi.logout()
+        BaseApi.logout()
             .then(({ data }) => {
                 deleteCookie(cookieName);
                 setProfile((prevState) => ({

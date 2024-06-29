@@ -60,9 +60,11 @@ return Application::configure(basePath: dirname(__DIR__))
         });
 
         $exceptions->renderable(function (RouteNotFoundException $exception, $request) {
-            return ApiResponseHelper::errorResponse(
-                $exception->getMessage(),
-                Response::HTTP_NOT_FOUND
-            );
+            if ($request->is('api/*')) {
+                return ApiResponseHelper::errorResponse(
+                    $exception->getMessage(),
+                    Response::HTTP_NOT_FOUND
+                );
+            }
         });
     })->create();

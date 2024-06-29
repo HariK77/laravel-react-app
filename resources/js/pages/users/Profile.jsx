@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import Select from "react-select";
 import { profileSchema } from "@Utils/validationSchema";
 import { Helmet } from "react-helmet";
-import { CommonApi } from "@Api/index";
+import { BaseApi } from "@Api/index";
 import { ProfileContext } from "@Context/profileContext";
 import { notify } from "@Utils/toastMessages";
 
@@ -64,7 +64,7 @@ const Profile = () => {
         validationSchema: profileSchema,
         onSubmit: function (values) {
             setIsBtnDisabled(true);
-            CommonApi.profileUpdate(createFormObject(values))
+            BaseApi.profileUpdate(createFormObject(values))
                 .then(({ data }) => {
                     setProfile((prevState) => ({
                         ...prevState,

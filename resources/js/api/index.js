@@ -1,7 +1,7 @@
-import CommonApi from '@Api/ApiRoutes';
+import BaseApi from '@Api/BaseApi';
 
-const commonApi = new CommonApi();
+const baseApi = new BaseApi();
 
 export {
-    commonApi as CommonApi,
+    baseApi as BaseApi,
 };

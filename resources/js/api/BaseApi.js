@@ -1,6 +1,6 @@
-import ApiBase from '@Api/core/ApiBase';
+import ApiCore from '@Api/core';
 
-export default class ApiRoutes extends ApiBase {
+export default class BaseApi extends ApiCore {
 
     register(payload) {
         return this.post('/register', payload);

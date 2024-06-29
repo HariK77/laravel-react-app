@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import Select from "react-select";
 import { registrationSchema } from "@Utils/validationSchema";
 import { Helmet } from "react-helmet";
-import { CommonApi } from "@Api/index";
+import { BaseApi } from "@Api/index";
 import { notify } from "@Utils/toastMessages";
 import { ProfileContext } from "@Context/profileContext";
 
@@ -48,7 +48,7 @@ const Register = () => {
         validationSchema: registrationSchema,
         onSubmit: function (values) {
             setIsBtnDisabled(true);
-            CommonApi.register(createFormObject(values))
+            BaseApi.register(createFormObject(values))
                 .then(({ data }) => {
                     notify("Registration successful, Login to continue");
                     navigate("/login");

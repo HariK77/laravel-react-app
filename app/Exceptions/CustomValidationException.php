@@ -20,7 +20,6 @@ class CustomValidationException extends ValidationException
             'Valdation failed',
             Response::HTTP_UNPROCESSABLE_ENTITY,
             $this->transformErrors(),
-            // $this->validator->errors()->getMessages(),
         );
     }
 
@@ -28,12 +27,6 @@ class CustomValidationException extends ValidationException
     {
         $errors = [];
         foreach ($this->validator->errors()->getMessages() as $field => $message) {
-            // $split = explode('.', $field);
-            // if (count($split) === 3) {
-            //     $errors[$split[0]][$split[1]][$split[2]] = str_replace($field, $split[2], $message);
-            // } else {
-            //     $errors[$field] = $message[0];
-            // }
             $errors[$field] = $message[0];
         }
         return $errors;

@@ -46,7 +46,7 @@ class LoginService
             $result['message'] = 'Invalid credentials';
             $result['code'] = Response::HTTP_UNAUTHORIZED;
         } else {
-            $user = User::firstWhere('email', $this->request->validated('email'));
+            $user = $this->user->firstWhere('email', $this->request->validated('email'));
 
             $result['status'] = true;
             $result['data'] = [

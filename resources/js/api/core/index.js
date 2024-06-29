@@ -5,7 +5,7 @@ import { getCookie, deleteCookie } from '@Helpers/cookie';
 const apiUrl = import.meta.env.VITE_API_URL;
 const cookieName = import.meta.env.VITE_COOKIE_NAME;
 
-export default class ApiBase {
+export default class ApiCore {
     constructor() {
         this.client = axios.create({
             baseURL: apiUrl,
@@ -15,14 +15,14 @@ export default class ApiBase {
             withCredentials: true,
         });
 
-        // Add a request interceptor
+        // Modify request interceptor
         this.client.interceptors.request.use(function (config) {
             const token = getCookie(cookieName);
             config.headers.Authorization = 'Bearer ' + token;
             return config;
         });
 
-        // Modift response interceptor
+        // Modify response interceptor
         this.client.interceptors.response.use((response) => {
             return response;
         }, (error) => {
