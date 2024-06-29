@@ -36,13 +36,13 @@ Start the Docker containers:
 - `./vendor/bin/sail up`
 
 Install composer dependencies:
-- `sail composer install`
+- `./vendor/bin/sail composer install`
 
 Install Node dependencies:
-- `sail npm install`
+- `./vendor/bin/sail npm install`
   
 Generate Key
-- Run `sail artisan key:generate`
+- Run `./vendor/bin/sail artisan key:generate`
   
 ### Manual Setup
 
@@ -58,16 +58,20 @@ Generate Key
 ## Running the application
 
 Run database migrations:
-- Using Sail: `sail artisan migrate`
+- Using Sail: `./vendor/bin/sail artisan migrate`
 - Without Sail: `php artisan migrate`
   
 Seed the database:
-- Using Sail: `sail artisan db:seed`
+- Using Sail: `./vendor/bin/sail artisan db:seed`
 - Without Sail: `php artisan db:seed`
 
 run npm serve:
-- Using Sail: `sail npm run dev`
+- Using Sail: `./vendor/bin/sail npm run dev`
 - Without Sail: `npm run dev`
+  
+Running PHP Server:
+- Using Sail: `./vendor/bin/sail down` and then run `./vendor/bin/sail up`
+- Without Sail: `php artisan serve`
 
 And then access `http://locahost`
 
@@ -80,4 +84,4 @@ And then access `http://locahost`
 - Profile - `http://locahost/profile`
 
 ## Postman Collection
-Please import the [Post Man Collection](Laravel React App.postman_collection.json) to interact with API Endpoints, which is included in the repo
+Please import the [Post Man Collection]("./Laravel React App.postman_collection.json") to interact with API Endpoints, which is included in the repo
