@@ -22,14 +22,15 @@ Rename the .env.example file .env
 
 ### Docker Setup
 Run this for insatalling php composer packages to run sail
-`
+
+```bash
 docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/var/www/html \
     -w /var/www/html \
     laravelsail/php83-composer:latest \
     composer install --ignore-platform-reqs
-`
+```
 
 
 Start the Docker containers:
