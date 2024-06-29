@@ -1,7 +1,7 @@
 
 ## About Laravel React App
 
-This is a simple boiler plate application developed in Laravel 11 and React 18 with sanctum authentication, Context api for user state management and Formik for Form validation
+This is a simple boiler plate application developed in [Laravel](https://laravel.com/) 11 and [React](https://react.dev/) 18 with [sanctum](https://laravel.com/docs/11.x/sanctum) authentication, Context api for user state management and Formik for Form validation
 
 # Installation Instructions
 
@@ -84,4 +84,4 @@ And then access `http://locahost`
 - Profile - `http://locahost/profile`
 
 ## Postman Collection
-Please import the [Post Man Collection]("Laravel React App.postman_collection.json") to interact with API Endpoints, which is included in the repo
+Please import the [Post Man Collection](https://raw.githubusercontent.com/HariK77/laravel-react-app/main/Laravel%20React%20App.postman_collection.json) to interact with API Endpoints, which is included in the repo
