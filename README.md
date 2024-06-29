@@ -84,4 +84,4 @@ And then access `http://locahost`
 - Profile - `http://locahost/profile`
 
 ## Postman Collection
-Please import the [Post Man Collection]("./Laravel React App.postman_collection.json") to interact with API Endpoints, which is included in the repo
+Please import the [Post Man Collection]("Laravel React App.postman_collection.json") to interact with API Endpoints, which is included in the repo
