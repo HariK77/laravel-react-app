@@ -1,0 +1,105 @@
+*** Laravel ---------------------------------------------------------------------------------------------
+project installation with Sail
+Options: mysql, pgsql, mariadb, redis, memcached, meilisearch, typesense, minio, selenium, and mailpit
+
+$ curl -s "https://laravel.build/laravel-react-app?with=pgsql,redis" | bash
+
+For adding dail into existing application
+$ composer require laravel/sail --dev
+$ sail artisan sail:install
+$ ./vendor/bin/sail up
+
+$ composer dump-autoload
+
+$ docker run --rm \\
+    -u "$(id -u):$(id -g)" \\
+    -v $(pwd):/var/www/html \\
+    -w /var/www/html \\
+    laravelsail/php83-composer:latest \\
+    composer install --ignore-platform-reqs
+
+$ sail build --no-cache
+
+$ sail artisan key:generate
+
+$ sail artisan make:model Category -m
+$ sail artisan migrate:rollback
+$ sail artisan migrate
+$ sail artisan migrate:refresh
+
+$ sail artisan make:seeder UserSeeder
+$ sail artisan db:seed
+$ sail artisan db:seed --class=UserSeeder
+
+$ sail artisan make:model Task -mcr
+
+$ sail artisan make:controller HomeController
+$ sail artisan make:controller Api/Audio/AudioController -a
+$ sail artisan make:controller Api/Blog/PostController -r
+$ sail artisan make:controller Api/Blog/PostController -r --model=Post
+$ sail artisan make:controller Api/ContactController --invokable
+
+$ sail artisan make:middleware RejectWeb
+
+$ sail artisan make:resource Api/Blog/PostCollectionResource
+$ sail artisan make:resource Api/Blog/PostCollectionResource --collection
+
+$ sail artisan make:provider RouteServiceProvider
+
+$ sail artisan route:list --path=api
+$ sail artisan route:list
+
+$ sail artisan make:request ContactFormRequest
+
+$ sail artisan make:exception CustomValidationException
+
+$ sail artisan make:mail sendEnquiry
+$ sail artisan make:mail sendEnquiry --markdown=mail.enquiry
+
+$ sail artisan queue:work
+
+$ sail artisan make:enum TaskStatus
+$ sail artisan make:cast Json
+$ sail artisan make:trait Test
+$ sail artisan make:policy UserPolicy
+
+$ sail artisan make:factory TaskFactory
+
+Laravel Common Pacakes:
+$ sail composer require spatie/laravel-server-monitor
+
+To enable api routes:
+$ sail artisan install:api
+
+*** Laravel Vite and common  ---------------------------------------------------------------
+
+$ sail npm install --save-dev @vitejs/plugin-react
+$ sail npm i -D vite-plugin-static-copy
+$ sail npm install -D sass
+
+*** Common Packages  ---------------------------------------------------------------------
+
+$ sail npm i --save bootstrap @popperjs/core
+$ sail npm install lodash
+$ sail npm install debounce
+$ sail npm i bootstrap-icons
+
+*** React Packages  ---------------------------------------------------------------------
+
+$ sail npm install react@latest react-dom@latest
+$ sail npm install formik yup react-router-dom
+$ sail npm install --save react-helmet
+$ sail npm install react-redux
+$ sail npm install @reduxjs/toolkit
+$ sail npm i react-select
+
+
+For watching file changes and buid
+
+$ sail npm run build
+$ sail npm run dev
+
+Fix for Watchers:
+
+$ cat /proc/sys/fs/inotify/max_user_watches
+$ fs.inotify.max_user_watches=524288

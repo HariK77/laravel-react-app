@@ -72,14 +72,14 @@ const Login = () => {
                             <form>
                                 <div className="mb-3">
                                     <label
-                                        htmlFor="exampleInputEmail1"
+                                        htmlFor="email"
                                         className="form-label"
                                     >
                                         Email address
                                     </label>
                                     <input
                                         type="email"
-                                        id="exampleInputEmail1"
+                                        id="email"
                                         className={
                                             formik.touched.email &&
                                             formik.errors.email
