@@ -26,7 +26,7 @@ class StoreVideoTrackRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'min:3', 'max:255'],
             'video_album_id' => ['required', 'exists:video_albums,id'],
-            'video' => ['required', 'required', 'file', 'mimes:' . VideoType::commaSeperatedString()],
+            'video' => ['required', 'file', 'mimes:' . VideoType::commaSeperatedString()],
             'thumbnail' => ['required', 'file', 'mimes:' . ImageType::commaSeperatedString()],
         ];
     }

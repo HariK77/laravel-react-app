@@ -25,7 +25,7 @@ class GetVideoRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'min:3', 'max:255'],
             'album' => ['required', 'string', 'min:3', 'max:255'],
-            'video' => ['required', 'required', 'file', 'mimes:' . implode(',', VideoType::all())],
+            'video' => ['required', 'file', 'mimes:' . implode(',', VideoType::all())],
         ];
     }
 }
