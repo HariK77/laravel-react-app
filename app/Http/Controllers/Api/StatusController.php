@@ -8,6 +8,6 @@ class StatusController extends ApiController
 {
     public function index(): JsonResponse
     {
-        return $this->successResponse("Api is Working !!!");
+        return $this->sendResponse([], "Api is Working !!!");
     }
 }

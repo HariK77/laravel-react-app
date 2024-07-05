@@ -2,10 +2,12 @@
 
 namespace App\Http\Requests\Profile;
 
-use App\Enums\Gender;
 use App\Models\User;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Enums\Gender;
+use App\Enums\ImageType;
+use App\Rules\AlphaSpaceRule;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileUpdateRequest extends FormRequest
 {
@@ -25,10 +27,10 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'min:3', 'max:30'],
+            'name' => ['required', new AlphaSpaceRule, 'min:3', 'max:30'],
             'email' => ['required', 'string', 'min:3', 'unique:users,email,' . $this->id],
             'gender' => ['required', Rule::in(Gender::all())],
-            'profile_image' => ['sometimes', 'required', 'file', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'profile_image' => ['sometimes', 'file', 'mimes:' . ImageType::commaSeperatedString(), 'max:2048'],
             'speaking_languages' => ['required', 'array']
         ];
     }

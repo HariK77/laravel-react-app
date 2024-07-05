@@ -36,10 +36,25 @@ return [
             'throw' => false,
         ],
 
+        'pictures' => [
+            'driver' => 'local',
+            'root' => env('MULTIMEDIA_PICTURES_FOLDER_PATH'),
+        ],
+
+        'music' => [
+            'driver' => 'local',
+            'root' => env('MULTIMEDIA_MUSIC_FOLDER_PATH'),
+        ],
+
+        'videos' => [
+            'driver' => 'local',
+            'root' => env('MULTIMEDIA_VIDEO_FOLDER_PATH'),
+        ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
         ],

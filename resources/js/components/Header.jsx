@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { ProfileContext, authBaseObject } from "@Context/profileContext";
-import { BaseApi } from "@Api/index";
+import { AuthApi } from "@Api/index";
 import { deleteCookie } from "@Helpers/cookie";
 
 const Header = () => {
@@ -11,7 +11,7 @@ const Header = () => {
     const { profile, setProfile } = useContext(ProfileContext);
 
     const handleLogout = () => {
-        BaseApi.logout()
+        AuthApi.logout()
             .then(({ data }) => {
                 deleteCookie(cookieName);
                 setProfile((prevState) => ({
@@ -53,6 +53,11 @@ const Header = () => {
                             </NavLink>
                         </li>
                         <li className="nav-item">
+                            <NavLink className="nav-link" to="/watch">
+                                Watch
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
                             <NavLink className="nav-link" to="/about">
                                 About
                             </NavLink>
@@ -89,6 +94,14 @@ const Header = () => {
                                             to="/profile"
                                         >
                                             Profile
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink
+                                            className="dropdown-item"
+                                            to="/videos"
+                                        >
+                                            Videos
                                         </NavLink>
                                     </li>
                                     <li>

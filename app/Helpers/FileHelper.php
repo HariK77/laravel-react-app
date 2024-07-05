@@ -4,13 +4,13 @@ namespace App\Helpers;
 
 use Illuminate\Http\UploadedFile;
 
-class UploadHelper
+class FileHelper
 {
     public static function fileUpload(string $path, UploadedFile $file): ?string
     {
         $filenameWithExt = $file->getClientOriginalName();
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        $fileName = $filename . '_' . time() . '.' . $file->getClientOriginalExtension();
+        $fileName = preg_replace('/[-\s]+/', '_', trim($filename)) . '_' . time() . '.' . $file->getClientOriginalExtension();
         $file->move(public_path($path), $fileName);
 
         return $path . '/' . $fileName;
@@ -41,3 +41,23 @@ class UploadHelper
         }
     }
 }
+
+
+// use Illuminate\Support\Str;
+// use Illuminate\Support\Facades\Storage;
+// use ProtoneMedia\LaravelFFMpeg\FFMpeg\FFProbe;
+// use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
+
+// $directories = Storage::disk('videos')->directories('Movies');
+//         // dd($directories);
+//         $data = [];
+
+//         foreach ($directories as $key => $directory) {
+//             $filePaths = Storage::disk('videos')->files($directory);
+//             foreach ($filePaths as $key => $filePath) {
+//                 if (Str::contains($filePath, '.mkv')) {
+//                     $data[] = FFProbe::create()->streams(Storage::disk('videos')->path('/'.$filePath))->all();
+//                 }
+//             }
+//         }
+//         dd($data);

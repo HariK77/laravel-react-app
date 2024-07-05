@@ -58,3 +58,48 @@ export const profileSchema = () => {
             .required(),
     })
 };
+
+
+export const addVideoAlbumSchema = () => {
+    return Yup.object().shape({
+        name: Yup.string().label("Album name").required(),
+        released_at: Yup.string().label("Released at").required(),
+        thumbnail: Yup.mixed()
+            .label("Thumbnail")
+            .required()
+            .test(
+                "fileFormat",
+                "Unsupported Format",
+                (value) =>
+                    !value ||
+                    (value && ["image/jpeg", "image/png", "image/jpg"].includes(value.type))
+            ),
+    })
+};
+
+export const addVideoTrackSchema = () => {
+    return Yup.object().shape({
+        name: Yup.string().label("Name").required(),
+        video_album_id: Yup.number().label("Video Album").required(),
+        video: Yup.mixed()
+            .label("Video")
+            .required()
+            .test(
+                "fileFormat",
+                "Unsupported Format",
+                (value) =>
+                    !value ||
+                    (value && ['video/x-matroska', 'video/mp4'].includes(value.type))
+            ),
+        thumbnail: Yup.mixed()
+            .label("Thumbnail")
+            .required()
+            .test(
+                "fileFormat",
+                "Unsupported Format",
+                (value) =>
+                    !value ||
+                    (value && ["image/jpeg", "image/png", "image/jpg"].includes(value.type))
+            ),
+    })
+};

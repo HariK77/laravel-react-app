@@ -26,6 +26,7 @@ $ sail artisan make:model Category -m
 $ sail artisan migrate:rollback
 $ sail artisan migrate
 $ sail artisan migrate:refresh
+$ sail artisan migrate:rollback --step=1
 
 $ sail artisan make:seeder UserSeeder
 $ sail artisan db:seed
@@ -38,6 +39,7 @@ $ sail artisan make:controller Api/Audio/AudioController -a
 $ sail artisan make:controller Api/Blog/PostController -r
 $ sail artisan make:controller Api/Blog/PostController -r --model=Post
 $ sail artisan make:controller Api/ContactController --invokable
+$ sail artisan make:controller PhotoController --api
 
 $ sail artisan make:middleware RejectWeb
 

@@ -1,7 +1,13 @@
-import BaseApi from '@Api/BaseApi';
+import { default as Base } from '@Api/AuthApi';
+import { default as Profile } from '@Api/ProfileApi';
+import { default as Video } from '@Api/VideoApi';
 
-const baseApi = new BaseApi();
+const AuthApi = new Base();
+const ProfileApi = new Profile();
+const VideoApi = new Video();
 
 export {
-    baseApi as BaseApi,
+    AuthApi,
+    ProfileApi,
+    VideoApi
 };

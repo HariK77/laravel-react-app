@@ -4,36 +4,17 @@ import { useFormik } from "formik";
 import Select from "react-select";
 import { registrationSchema } from "@Utils/validationSchema";
 import { Helmet } from "react-helmet";
-import { BaseApi } from "@Api/index";
+import { AuthApi } from "@Api/index";
 import { notify } from "@Utils/toastMessages";
 import { ProfileContext } from "@Context/profileContext";
+import { createFormObject, getGenders, getLanguages } from "@Helpers/common";
 
 const Register = () => {
     const [isBtnDisabled, setIsBtnDisabled] = useState(false);
     const { profile } = useContext(ProfileContext);
     const navigate = useNavigate();
-    const genders = ["Male", "Female", "Others"];
-    const languages = [
-        { value: "Telugu", label: "Telugu" },
-        { value: "Hindi", label: "Hindi" },
-        { value: "English", label: "English" },
-    ];
-
-    const createFormObject = (values) => {
-        const formData = new FormData();
-
-        Object.keys(values).forEach((key) => {
-            if (key === "speaking_languages") {
-                values[key].forEach((selection) => {
-                    formData.append(key + "[]", selection.value);
-                });
-            } else {
-                formData.append(key, values[key]);
-            }
-        });
-
-        return formData;
-    };
+    const genders = getGenders();
+    const languages = getLanguages();
 
     const formik = useFormik({
         initialValues: {
@@ -48,7 +29,7 @@ const Register = () => {
         validationSchema: registrationSchema,
         onSubmit: function (values) {
             setIsBtnDisabled(true);
-            BaseApi.register(createFormObject(values))
+            AuthApi.register(createFormObject(values))
                 .then(({ data }) => {
                     notify("Registration successful, Login to continue");
                     navigate("/login");

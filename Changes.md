@@ -1,0 +1,4 @@
+- Need to work on moving all the exceptions into on file -- app.php
+- Pass validated data instead of entire request object into services
+- make and interface with process and validated data and implement it to Base Service class
+- delete files with model events

@@ -1,4 +1,4 @@
-import { BaseApi } from "@Api/index";
+import { ProfileApi } from "@Api/index";
 import { getCookie } from "@Helpers/cookie";
 import { createContext, useEffect, useState } from "react";
 
@@ -20,7 +20,7 @@ const ProfileProvider = ({ children }) => {
 
     useEffect(() => {
         if (getCookie(cookieName)) {
-            BaseApi.getAuthenticatedUser()
+            ProfileApi.getAuthenticatedUser()
                 .then(({ data }) => {
                     setProfile((prevState) => ({
                         ...prevState,
