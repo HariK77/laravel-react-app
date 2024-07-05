@@ -4,13 +4,13 @@ namespace App\Helpers;
 
 use Illuminate\Http\UploadedFile;
 
-class UploadHelper
+class FileUploadHelper
 {
     public static function fileUpload(string $path, UploadedFile $file): ?string
     {
         $filenameWithExt = $file->getClientOriginalName();
         $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-        $fileName = $filename . '_' . time() . '.' . $file->getClientOriginalExtension();
+        $fileName = preg_replace('/[-\s]+/', '_', trim($filename)) . '_' . time() . '.' . $file->getClientOriginalExtension();
         $file->move(public_path($path), $fileName);
 
         return $path . '/' . $fileName;

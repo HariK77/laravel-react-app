@@ -16,7 +16,7 @@ class CustomValidationException extends ValidationException
      */
     public function render($request): JsonResponse
     {
-        return $this->errorResponse(
+        return $this->sendError(
             'Valdation failed',
             Response::HTTP_UNPROCESSABLE_ENTITY,
             $this->transformErrors(),

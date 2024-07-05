@@ -11,7 +11,8 @@ class LogoutController extends ApiController
     public function index(Request $request): JsonResponse
     {
         $request->user()->currentAccessToken()->delete();
-        return $this->successResponse(
+        return $this->sendResponse(
+            [],
             'Logged out successfully'
         );
     }

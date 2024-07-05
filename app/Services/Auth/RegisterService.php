@@ -2,21 +2,23 @@
 
 namespace App\Services\Auth;
 
-use App\Helpers\UploadHelper;
+use App\Helpers\FileUploadHelper;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
+use App\Services\BaseService;
 use Symfony\Component\HttpFoundation\Response;
 
-class RegisterService
+class RegisterService extends BaseService
 {
-    public function __construct(
-        protected User $user
-    ) {
-    }
     /**
      * @var RegisterRequest $request
      */
     protected RegisterRequest $request;
+
+    public function __construct(
+        protected User $user
+    ) {
+    }
 
     /**
      * @param RegisterRequest $request
@@ -30,21 +32,18 @@ class RegisterService
 
     public function process()
     {
-        $result = [];
         try {
-            $data = [...$this->request->validated()];
-            $data['profile_image'] = UploadHelper::fileUpload('uploads/profile', $data['profile_image']);
+            $data = $this->request->validated();
+            $data['profile_image'] = FileUploadHelper::fileUpload(config('paths.profile'), $data['profile_image']);
             $this->user->create($data);
 
-            $result['message'] = 'User registered successfully.';
-            $result['code'] = Response::HTTP_CREATED;
-            $result['status'] = true;
+            $this->message = 'User registered successfully.';
+            $this->code = Response::HTTP_CREATED;
+            $this->status = true;
         } catch (\Throwable $th) {
-            $result['message'] = $th->getMessage();
-            $result['code'] = Response::HTTP_INTERNAL_SERVER_ERROR;
-            $result['status'] = false;
+            $this->message = $th->getMessage();
         }
 
-        return $result;
+        return $this->sendData();
     }
 }

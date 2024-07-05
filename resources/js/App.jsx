@@ -9,6 +9,8 @@ import Login from "@Pages/auth/Login";
 import Register from "@Pages/auth/Register";
 import About from "@Pages/About";
 import Profile from "@Pages/users/Profile";
+import Videos from "@Pages/videos/Index";
+import Watch from "@Pages/Watch";
 
 const App = () => {
     return (
@@ -18,11 +20,13 @@ const App = () => {
                     <Route index element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/watch" element={<Watch />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                 </Route>
-                <Route path="/profile" element={<ProtectedLayout />}>
-                    <Route index element={<Profile />} />
+                <Route path="/" element={<ProtectedLayout />}>
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/videos" element={<Videos />} />
                 </Route>
                 <Route path="/*" element={<NotFound />} />
             </Routes>

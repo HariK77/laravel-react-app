@@ -3,7 +3,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Helmet } from "react-helmet";
-import { BaseApi } from "@Api/index";
+import { AuthApi } from "@Api/index";
 import { ProfileContext } from "@Context/profileContext";
 import { setCookie } from "@Helpers/cookie";
 import { notify } from "@Utils/toastMessages";
@@ -27,7 +27,7 @@ const Login = () => {
         validationSchema: validationRules,
         onSubmit: function (values) {
             setIsBtnDisabled(true);
-            BaseApi.login(values)
+            AuthApi.login(values)
                 .then(({ data }) => {
                     handleAuth(data);
                 })

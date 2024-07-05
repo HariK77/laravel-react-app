@@ -10,26 +10,45 @@ class ApiController extends Controller
 {
     use ApiResponse;
 
-    public function processResult(array $data): JsonResponse
+    public function processResult(array $result): JsonResponse
     {
-        if (!$data['status']) {
-            return $this->errorResponse(
-                $data['message'],
-                $data['code'],
+        return match ($result['status']) {
+            true => $this->success($result),
+            false => $this->error($result),
+            default => response()->noContent(),
+        };
+    }
+
+    protected function success($result)
+    {
+        if (isset($result['data'])) {
+            return $this->sendResponse(
+                $result['data'],
+                $result['message'],
+                $result['code']
             );
         }
 
-        if (isset($data['data'])) {
-            return $this->dataResponse(
-                $data['data'],
-                $data['code'],
-                $data['message']
+        return $this->sendResponse(
+            [],
+            $result['message'],
+            $result['code']
+        );
+    }
+
+    protected function error($result)
+    {
+        if (isset($result['errors'])) {
+            return $this->sendError(
+                $result['message'],
+                $result['code'],
+                $result['errors'],
             );
         }
 
-        return $this->successResponse(
-            $data['message'],
-            $data['code'],
+        return $this->sendError(
+            $result['message'],
+            $result['code'],
         );
     }
 }

@@ -3,39 +3,16 @@ import { useFormik } from "formik";
 import Select from "react-select";
 import { profileSchema } from "@Utils/validationSchema";
 import { Helmet } from "react-helmet";
-import { BaseApi } from "@Api/index";
+import { ProfileApi } from "@Api/index";
 import { ProfileContext } from "@Context/profileContext";
 import { notify } from "@Utils/toastMessages";
+import { createFormObject, getGenders, getLanguages } from "@Helpers/common";
 
 const Profile = () => {
     const { profile, setProfile } = useContext(ProfileContext);
     const [isBtnDisabled, setIsBtnDisabled] = useState(false);
-    const genders = ["Male", "Female", "Others"];
-    const languages = [
-        { value: "Telugu", label: "Telugu" },
-        { value: "Hindi", label: "Hindi" },
-        { value: "English", label: "English" },
-    ];
-
-    const createFormObject = (values) => {
-        const formData = new FormData();
-
-        Object.keys(values).forEach((key) => {
-            if (key === "speaking_languages") {
-                values[key].forEach((selection) => {
-                    formData.append(key + "[]", selection.value);
-                });
-            } else {
-                if (values[key]) {
-                    formData.append(key, values[key]);
-                }
-            }
-        });
-
-        formData.append("id", profile.id);
-
-        return formData;
-    };
+    const genders = getGenders();
+    const languages = getLanguages();
 
     const getLanguagesSelected = () => {
         return profile.speakingLanguages.map((language) => {
@@ -64,7 +41,9 @@ const Profile = () => {
         validationSchema: profileSchema,
         onSubmit: function (values) {
             setIsBtnDisabled(true);
-            BaseApi.profileUpdate(createFormObject(values))
+            ProfileApi.profileUpdate(
+                createFormObject({ ...values, id: profile.id })
+            )
                 .then(({ data }) => {
                     setProfile((prevState) => ({
                         ...prevState,
@@ -95,7 +74,7 @@ const Profile = () => {
             <div className="my-4">
                 <h2>Welcome {profile.name}</h2>
             </div>
-            <div className="card">
+            <div className="card mb-4">
                 <div className="card-body p-4">
                     <form method="POST" encType="multipart/form-data">
                         <div className="row">

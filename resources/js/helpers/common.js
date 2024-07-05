@@ -27,3 +27,37 @@ export const snakeToCamel = (string) => {
             .replace('_', '')
     );
 }
+
+export const createFormObject = (data) => {
+    const formData = new FormData();
+
+    Object.keys(data).forEach((key) => {
+        if (Array.isArray(data[key])) {
+            data[key].forEach((selection) => {
+                formData.append(key + "[]", selection.value);
+            });
+        } else {
+            if (data[key]) {
+                formData.append(key, data[key]);
+            }
+        }
+    });
+
+    return formData;
+};
+
+export const getGenders = () => {
+    return [
+        "Male",
+        "Female",
+        "Others"
+    ];
+}
+
+export const getLanguages = () => {
+    return [
+        { value: "Telugu", label: "Telugu" },
+        { value: "Hindi", label: "Hindi" },
+        { value: "English", label: "English" },
+    ]
+}

@@ -7,37 +7,33 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ApiResponseHelper
 {
-    public static function successResponse(string $message, ?int $statusCode = Response::HTTP_OK): JsonResponse
-    {
-        return response()->json(
-            [
-                'message' => $message,
-                'code' => $statusCode
-            ],
-            $statusCode
-        );
-    }
+    public static function sendResponse(
+        mixed $result = [],
+        string $message = 'Request Successful.',
+        int $code = Response::HTTP_OK
+    ): JsonResponse {
 
-    public static function dataResponse(mixed $data, ?int $statusCode = Response::HTTP_OK, ?string $message = null): JsonResponse
-    {
-        $response = [];
-        if ($message) {
-            $response['message'] = $message;
+        $response = [
+            'message' => $message,
+        ];
+
+        if (!empty($result)) {
+            $response['data'] = $result;
         }
-        $response['data'] = $data;
-        $response['code'] = $statusCode;
 
         return response()->json(
             $response,
-            $statusCode
+            $code
         );
     }
 
-    public static function errorResponse(string $message, ?int $statusCode = Response::HTTP_INTERNAL_SERVER_ERROR, ?array $errors = []): JsonResponse
-    {
+    public static function sendError(
+        string $message = 'Request Failed.',
+        int $code = Response::HTTP_INTERNAL_SERVER_ERROR,
+        array $errors = []
+    ): JsonResponse {
         $response = [
             'message' => $message,
-            'code' => $statusCode
         ];
 
         if (count($errors)) {
@@ -45,7 +41,7 @@ class ApiResponseHelper
         }
         return response()->json(
             $response,
-            $statusCode
+            $code
         );
     }
 }
