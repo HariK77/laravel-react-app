@@ -4,7 +4,7 @@ namespace App\Services\Video;
 
 use App\Models\SourceVideo;
 use Illuminate\Support\Str;
-use App\Helpers\FileHelper;
+use App\Helpers\FileUploadHelper;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\Video\StoreSourceVideoRequest;

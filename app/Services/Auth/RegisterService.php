@@ -2,7 +2,7 @@
 
 namespace App\Services\Auth;
 
-use App\Helpers\FileHelper;
+use App\Helpers\FileUploadHelper;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\User;
 use App\Services\BaseService;
@@ -34,7 +34,7 @@ class RegisterService extends BaseService
     {
         try {
             $data = $this->request->validated();
-            $data['profile_image'] = FileHelper::fileUpload(config('paths.profile'), $data['profile_image']);
+            $data['profile_image'] = FileUploadHelper::fileUpload(config('paths.profile'), $data['profile_image']);
             $this->user->create($data);
 
             $this->message = 'User registered successfully.';

@@ -2,7 +2,7 @@
 
 namespace App\Services\Profile;
 
-use App\Helpers\FileHelper;
+use App\Helpers\FileUploadHelper;
 use App\Http\Requests\Profile\ProfileUpdateRequest;
 use App\Http\Resources\UserResource;
 use App\Services\BaseService;
@@ -41,8 +41,8 @@ class ProfileUpdateService extends BaseService
             $user->speaking_languages = $data['speaking_languages'];
 
             if ($this->request->has('profile_image')) {
-                FileHelper::fileDelete($user->profile_image);
-                $user->profile_image = FileHelper::fileUpload(config('paths.profile'), $data['profile_image']);
+                FileUploadHelper::fileDelete($user->profile_image);
+                $user->profile_image = FileUploadHelper::fileUpload(config('paths.profile'), $data['profile_image']);
             }
 
             $user->save();

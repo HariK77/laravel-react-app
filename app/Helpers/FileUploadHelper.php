@@ -4,7 +4,7 @@ namespace App\Helpers;
 
 use Illuminate\Http\UploadedFile;
 
-class FileHelper
+class FileUploadHelper
 {
     public static function fileUpload(string $path, UploadedFile $file): ?string
     {
@@ -41,23 +41,3 @@ class FileHelper
         }
     }
 }
-
-
-// use Illuminate\Support\Str;
-// use Illuminate\Support\Facades\Storage;
-// use ProtoneMedia\LaravelFFMpeg\FFMpeg\FFProbe;
-// use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
-
-// $directories = Storage::disk('videos')->directories('Movies');
-//         // dd($directories);
-//         $data = [];
-
-//         foreach ($directories as $key => $directory) {
-//             $filePaths = Storage::disk('videos')->files($directory);
-//             foreach ($filePaths as $key => $filePath) {
-//                 if (Str::contains($filePath, '.mkv')) {
-//                     $data[] = FFProbe::create()->streams(Storage::disk('videos')->path('/'.$filePath))->all();
-//                 }
-//             }
-//         }
-//         dd($data);

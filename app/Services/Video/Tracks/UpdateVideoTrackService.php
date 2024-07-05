@@ -4,7 +4,7 @@ namespace App\Services\Video\Tracks;
 
 use App\Models\VideoTrack;
 use Illuminate\Support\Str;
-use App\Helpers\FileHelper;
+use App\Helpers\FileUploadHelper;
 use App\Services\BaseService;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Resources\Video\VideoTrackResource;
@@ -54,13 +54,13 @@ class UpdateVideoTrackService extends BaseService
             $this->videoTrack->slug = Str::of($data['name'])->slug();
             $this->videoTrack->video_album_id = $data['video_album_id'];
             if (isset($data['thumbnail'])) {
-                FileHelper::fileDelete($this->videoTrack->thumbnail);
-                $this->videoTrack->thumbnail = FileHelper::fileUpload(config('paths.thumbnails.video.tracks'), $data['thumbnail']);
+                FileUploadHelper::fileDelete($this->videoTrack->thumbnail);
+                $this->videoTrack->thumbnail = FileUploadHelper::fileUpload(config('paths.thumbnails.video.tracks'), $data['thumbnail']);
             }
 
             if (isset($data['video'])) {
-                FileHelper::fileDelete($this->videoTrack->original_source_url);
-                $this->videoTrack->original_source_url = FileHelper::fileUpload(config('paths.source.video'), $data['video']);
+                FileUploadHelper::fileDelete($this->videoTrack->original_source_url);
+                $this->videoTrack->original_source_url = FileUploadHelper::fileUpload(config('paths.source.video'), $data['video']);
             }
             $this->videoTrack->save();
 

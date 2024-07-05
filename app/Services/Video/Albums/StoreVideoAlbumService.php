@@ -3,7 +3,7 @@
 namespace App\Services\Video\Albums;
 
 use Illuminate\Support\Str;
-use App\Helpers\FileHelper;
+use App\Helpers\FileUploadHelper;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\Video\Albums\StoreVideoAlbumRequest;
 use App\Http\Resources\Video\VideoAlbumResource;
@@ -36,7 +36,7 @@ class StoreVideoAlbumService extends BaseService
     {
         try {
             $data = $this->request->validated();
-            $data['thumbnail'] = FileHelper::fileUpload(config('paths.thumbnails.video.albums'), $data['thumbnail']);
+            $data['thumbnail'] = FileUploadHelper::fileUpload(config('paths.thumbnails.video.albums'), $data['thumbnail']);
             $data['slug'] = Str::of($data['name'])->slug();
 
             $this->status = true;

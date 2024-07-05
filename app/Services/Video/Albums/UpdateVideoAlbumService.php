@@ -4,7 +4,7 @@ namespace App\Services\Video\Albums;
 
 use App\Models\VideoAlbum;
 use Illuminate\Support\Str;
-use App\Helpers\FileHelper;
+use App\Helpers\FileUploadHelper;
 use App\Services\BaseService;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Resources\Video\VideoAlbumResource;
@@ -54,8 +54,8 @@ class UpdateVideoAlbumService extends BaseService
             $this->videoAlbum->name = $data['name'];
             $this->videoAlbum->slug = Str::of($data['name'])->slug();
             if ($this->request->has('thumbnail')) {
-                FileHelper::fileDelete($this->videoAlbum->thumbnail);
-                $data['thumbnail'] = FileHelper::fileUpload(config('paths.thumbnails.video.albums'), $data['thumbnail']);
+                FileUploadHelper::fileDelete($this->videoAlbum->thumbnail);
+                $data['thumbnail'] = FileUploadHelper::fileUpload(config('paths.thumbnails.video.albums'), $data['thumbnail']);
             }
             $this->videoAlbum->released_at = $data['released_at'];
             $this->videoAlbum->save();

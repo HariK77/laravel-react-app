@@ -3,7 +3,7 @@
 namespace App\Services\Video\Tracks;
 
 use Illuminate\Support\Str;
-use App\Helpers\FileHelper;
+use App\Helpers\FileUploadHelper;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Resources\Video\VideoTrackResource;
 use App\Models\VideoTrack;
@@ -36,9 +36,9 @@ class StoreVideoTrackService extends BaseService
         try {
             $data = $this->validatedData;
 
-            $data['thumbnail'] = FileHelper::fileUpload(config('paths.thumbnails.video.tracks'), $data['thumbnail']);
+            $data['thumbnail'] = FileUploadHelper::fileUpload(config('paths.thumbnails.video.tracks'), $data['thumbnail']);
             $data['slug'] = Str::of($data['name'])->slug();
-            $data['original_source_url'] = FileHelper::fileUpload(config('paths.source.video'), $data['video']);
+            $data['original_source_url'] = FileUploadHelper::fileUpload(config('paths.source.video'), $data['video']);
 
             $this->status = true;
             $this->message = 'Video track has been added successfully';

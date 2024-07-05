@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api\Video;
 
-use App\Helpers\FileHelper;
+use App\Helpers\FileUploadHelper;
 use App\Models\VideoAlbum;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Api\ApiController;
@@ -58,7 +58,7 @@ class VideoAlbumController extends ApiController
      */
     public function destroy(VideoAlbum $videoAlbum)
     {
-        FileHelper::fileDelete($videoAlbum->thumbnail);
+        FileUploadHelper::fileDelete($videoAlbum->thumbnail);
         $videoAlbum->delete();
 
         return $this->sendResponse(

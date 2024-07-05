@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Video;
 
 use App\Models\VideoTrack;
-use App\Helpers\FileHelper;
+use App\Helpers\FileUploadHelper;
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Resources\Video\VideoTrackResource;
 use App\Services\Video\Tracks\StoreVideoTrackService;
@@ -57,8 +57,8 @@ class VideoTracksController extends ApiController
      */
     public function destroy(VideoTrack $videoTrack)
     {
-        FileHelper::fileDelete($videoTrack->thumbnail);
-        FileHelper::fileDelete($videoTrack->original_source_url);
+        FileUploadHelper::fileDelete($videoTrack->thumbnail);
+        FileUploadHelper::fileDelete($videoTrack->original_source_url);
         $videoTrack->delete();
 
         return $this->sendResponse(
