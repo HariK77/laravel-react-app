@@ -75,12 +75,12 @@
 							"formdata": [
 								{
 									"key": "name",
-									"value": "Jhon Doe",
+									"value": "Hari Krishna",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "jhondoe@gmail.com",
+									"value": "krishna75@gmail.com",
 									"type": "text"
 								},
 								{
@@ -101,7 +101,7 @@
 								{
 									"key": "profile_image",
 									"type": "file",
-									"src": "/home/maxx/Pictures/Mobile/Mine/Cropped.jpg"
+									"src": "/home/maxx/Pictures/Mobile/Mine/794.JPG"
 								},
 								{
 									"key": "speaking_languages[]",
@@ -186,17 +186,17 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "1",
+									"value": "2",
 									"type": "text"
 								},
 								{
 									"key": "name",
-									"value": "Hari Krishna Updated",
+									"value": "Jhon Doe Updated",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "krishna@gmail.com",
+									"value": "jhondoe@gmail.com",
 									"type": "text"
 								},
 								{
@@ -217,6 +217,11 @@
 								{
 									"key": "speaking_languages[]",
 									"value": "English",
+									"type": "text"
+								},
+								{
+									"key": "speaking_languages[]",
+									"value": "Hindi",
 									"type": "text"
 								}
 							]
@@ -268,6 +273,320 @@
 			]
 		},
 		{
+			"name": "Video",
+			"item": [
+				{
+					"name": "Albums",
+					"item": [
+						{
+							"name": "Add Video Album",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Test Album",
+											"type": "text"
+										},
+										{
+											"key": "thumbnail",
+											"type": "file",
+											"src": "/home/maxx/Downloads/Dookudu_poster.jpg"
+										},
+										{
+											"key": "released_at",
+											"value": "2011-09-23",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/videos/albums",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"videos",
+										"albums"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Video Album",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Son of Satyamurthy",
+											"type": "text"
+										},
+										{
+											"key": "released_at",
+											"value": "2015-03-15",
+											"type": "text"
+										},
+										{
+											"key": "thubmnail",
+											"value": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/videos/albums/2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"videos",
+										"albums",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Video Album",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/videos/albums/2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"videos",
+										"albums",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Video Albums",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/videos/albums",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"videos",
+										"albums"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Video Album",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/videos/albums/7",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"videos",
+										"albums",
+										"7"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tracks",
+					"item": [
+						{
+							"name": "Add Video Track",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Chal Chalo Chalo",
+											"type": "text"
+										},
+										{
+											"key": "video_album_id",
+											"value": "2",
+											"type": "text"
+										},
+										{
+											"key": "video",
+											"type": "file",
+											"src": "/home/maxx/Videos/Son of Sathyamurthy 5.1/One & Two & Three.mkv"
+										},
+										{
+											"key": "thumbnail",
+											"type": "file",
+											"src": "/home/maxx/Videos/Son of Sathyamurthy 5.1/one and two.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/videos/tracks",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"videos",
+										"tracks"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Video Track",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Chal Chalo Chalo Updated",
+											"type": "text"
+										},
+										{
+											"key": "video_album_id",
+											"value": "2",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/videos/tracks/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"videos",
+										"tracks",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Video Track",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/videos/tracks/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"videos",
+										"tracks",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Video Tracks",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/videos/tracks",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"videos",
+										"tracks"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Video Track",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/videos/tracks/7",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"videos",
+										"tracks",
+										"7"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Conversion",
+					"item": [
+						{
+							"name": "Convert Video Track",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "track_id",
+											"value": "4",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/videos/conversions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"videos",
+										"conversions"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Check Status",
 			"request": {
 				"method": "GET",
@@ -285,6 +604,16 @@
 			"response": []
 		}
 	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
 	"event": [
 		{
 			"listen": "prerequest",
