@@ -2,13 +2,11 @@ import { Helmet } from "react-helmet";
 
 const Home = () => {
     return (
-        <div className="container">
+        <div className="container my-4">
             <Helmet>
                 <title>Home</title>
             </Helmet>
-            <div className="my-5">
-                <h2>Home</h2>
-            </div>
+            <h2>Home</h2>
         </div>
     );
 };

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import React, { useEffect, useMemo, useState } from "react";
 import { VideoApi } from "@Api/index";
 
@@ -12,7 +13,7 @@ const VideoTracksTable = () => {
                 setVideoTracks(data.data);
             })
             .catch((error) => {
-                console.log("error", error);
+                console.error("error", error);
             })
             .finally(() => {
                 setIsFetching(false);
@@ -24,7 +25,7 @@ const VideoTracksTable = () => {
     }, []);
 
     return (
-        <div className="mb-4">
+        <div className="mt-4">
             <div className="d-flex justify-content-between my-2">
                 <h3>Video Tracks</h3>
                 <div>
@@ -47,11 +48,11 @@ const VideoTracksTable = () => {
                             <thead>
                                 <tr>
                                     <th scope="col">Id</th>
-                                    <th scope="col">Track</th>
+                                    <th scope="col">Track Name</th>
                                     <th scope="col">Thumbnail</th>
                                     <th scope="col">Album</th>
                                     <th scope="col">Is Converted</th>
-                                    <th scope="col">Created At</th>
+                                    <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,14 +61,32 @@ const VideoTracksTable = () => {
                                         <tr key={key}>
                                             <td>{videoTrack.id}</td>
                                             <td>{videoTrack.name}</td>
-                                            <td>{videoTrack.thubnail}</td>
+                                            <td>
+                                                <img
+                                                    src={videoTrack.thumbnail}
+                                                    className="img-fluid rounded me-2"
+                                                    alt="..."
+                                                    width={40}
+                                                    height={40}
+                                                ></img>
+                                            </td>
                                             <td>{videoTrack.album.name}</td>
                                             <td>
                                                 {videoTrack.streamUrl
                                                     ? "Yes"
                                                     : "No"}
                                             </td>
-                                            <td>{videoTrack.created_at}</td>
+                                            <td>
+                                                <div className="d-flex align-items-center">
+                                                    <NavLink
+                                                        to={`/watch/${videoTrack.slug}`}
+                                                    >
+                                                        <i className="bi-eye pe-2"></i>
+                                                    </NavLink>
+                                                    <i className="bi-pencil pe-2"></i>
+                                                    <i className="bi-trash"></i>
+                                                </div>
+                                            </td>
                                         </tr>
                                     ))
                                 ) : (

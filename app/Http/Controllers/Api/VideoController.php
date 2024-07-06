@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\VideoTrack;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ApiController;
-use App\Http\Requests\Video\GetAllVideoRequest;
 use App\Http\Requests\Video\GetVideoRequest;
+use App\Http\Requests\Video\GetAllVideoRequest;
+use App\Http\Resources\Video\VideoTrackResource;
 
 class VideoController extends ApiController
 {
@@ -36,9 +38,9 @@ class VideoController extends ApiController
     /**
      * Display the specified resource.
      */
-    public function show(GetVideoRequest $request)
+    public function show(Request $request, VideoTrack $videoTrack)
     {
-        //
+        return $this->sendResponse(new VideoTrackResource($videoTrack));
     }
 
     /**

@@ -11,22 +11,26 @@ import About from "@Pages/About";
 import Profile from "@Pages/users/Profile";
 import Videos from "@Pages/videos/Index";
 import Watch from "@Pages/Watch";
+import VideosList from "@Pages/VideoList";
 
 const App = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/">
             <Routes>
                 <Route path="/" element={<BaseLayout />}>
-                    <Route index element={<Home />} />
+                    <Route path="" element={<Home />} />
                     <Route path="/about" element={<About />} />
+                    <Route path="/videos" element={<VideosList />} />
                     <Route path="/contact" element={<Contact />} />
-                    <Route path="/watch" element={<Watch />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/watch/:slug">
+                        <Route index element={<Watch />} />
+                    </Route>
                 </Route>
                 <Route path="/" element={<ProtectedLayout />}>
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/videos" element={<Videos />} />
+                    <Route path="/videos/manage" element={<Videos />} />
                 </Route>
                 <Route path="/*" element={<NotFound />} />
             </Routes>

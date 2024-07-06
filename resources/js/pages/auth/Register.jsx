@@ -56,7 +56,7 @@ const Register = () => {
     }, [profile]);
 
     return (
-        <div className="container">
+        <div className="container my-4">
             <Helmet>
                 <title>Register</title>
             </Helmet>

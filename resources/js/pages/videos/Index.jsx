@@ -6,7 +6,7 @@ import AddVideoAlbum from "./AddVideoAlbum";
 
 const SourceVideos = () => {
     return (
-        <div className="container">
+        <div className="container my-4">
             <Helmet>
                 <title>Videos</title>
             </Helmet>
