@@ -2,13 +2,11 @@ import { Helmet } from "react-helmet";
 
 const Contact = () => {
     return (
-        <div className="container">
+        <div className="container my-4">
             <Helmet>
                 <title>Contact</title>
             </Helmet>
-            <div className="my-5">
-                <h2>Contact</h2>
-            </div>
+            <h2>Contact</h2>
         </div>
     );
 };

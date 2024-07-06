@@ -60,7 +60,7 @@ const Login = () => {
     }, [profile]);
 
     return (
-        <div className="container">
+        <div className="container my-4">
             <Helmet>
                 <title>Login</title>
             </Helmet>

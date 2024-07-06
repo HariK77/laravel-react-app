@@ -20,7 +20,7 @@ class VideoTrackResource extends JsonResource
             'slug' => $this->slug,
             'thumbnail' => $this->thumbnail,
             'originalSourceUrl' => $this->original_source_url,
-            'streamUrl' => null,
+            'streamUrl' => $this->stream_url,
             'album' => new VideoAlbumResource($this->album)
         ];
     }

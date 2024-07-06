@@ -46,7 +46,7 @@ const AddSourceVideo = () => {
                 });
             })
             .catch((error) => {
-                console.log("error", error);
+                console.error("error", error);
             });
     };
 
@@ -55,7 +55,7 @@ const AddSourceVideo = () => {
     }, []);
 
     return (
-        <div className="my-5">
+        <div className="">
             <h3>Add Video Track</h3>
             <div className="card">
                 <div className="card-body p-4">

@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\LogoutController;
 use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\Video\ConversionController;
 use App\Http\Controllers\Api\Video\VideoAlbumController;
 use App\Http\Controllers\Api\Video\VideoTracksController;
 
@@ -29,11 +30,11 @@ Route::middleware('auth:sanctum')->group(function () {
             ]
         ]
     );
+    Route::apiResource('videos/conversions', ConversionController::class);
 });
 
 Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'index']);
     Route::post('/register', [RegisterController::class, 'index']);
-    Route::get('/videos', [VideoController::class, 'index']);
-    Route::get('/videos/{slug}', [VideoController::class, 'show']);
+    Route::apiResource('/videos', VideoController::class)->parameter('videos', 'video_track:slug');
 });

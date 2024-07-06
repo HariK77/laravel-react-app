@@ -21,6 +21,10 @@ export default class VideoApi extends ApiCore {
         return this.post(videoTracksUrl, payload);
     }
 
+    getVideoTrack(videoTrackSlug) {
+        return this.get(`videos/${videoTrackSlug}`);
+    }
+
     getVideoTracks() {
         return this.get(videoTracksUrl);
     }
