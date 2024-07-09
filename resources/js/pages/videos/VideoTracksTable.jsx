@@ -1,33 +1,24 @@
 import { NavLink } from "react-router-dom";
-import React, { useEffect, useMemo, useState } from "react";
-import { VideoApi } from "@Api/index";
+import React, { useContext } from "react";
+import { VideoContext } from "@Context/VideoContext";
+import Modal from "@Components/Modal";
 
 const VideoTracksTable = () => {
-    const [videoTracks, setVideoTracks] = useState(null);
-    const [isFetching, setIsFetching] = useState(false);
-
-    const getVideoTracks = () => {
-        setIsFetching(true);
-        VideoApi.getVideoTracks()
-            .then(({ data }) => {
-                setVideoTracks(data.data);
-            })
-            .catch((error) => {
-                console.error("error", error);
-            })
-            .finally(() => {
-                setIsFetching(false);
-            });
-    };
-
-    useEffect(() => {
-        getVideoTracks();
-    }, []);
+    const { videoTracks, isFetchingVideoTracks } = useContext(VideoContext);
 
     return (
         <div className="mt-4">
             <div className="d-flex justify-content-between my-2">
                 <h3>Video Tracks</h3>
+                {/* <button
+                    type="button"
+                    className="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                >
+                    Launch demo modal
+                </button>
+                <Modal /> */}
                 <div>
                     <input
                         type="text"
@@ -41,7 +32,7 @@ const VideoTracksTable = () => {
 
             <div className="card">
                 <div className="card-body p-0">
-                    {isFetching ? (
+                    {isFetchingVideoTracks ? (
                         <h3>Loading</h3>
                     ) : (
                         <table className="table table-striped table-hover mb-0">

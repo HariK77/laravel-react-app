@@ -19,9 +19,9 @@ services:
             IGNITION_LOCAL_SITES_PATH: '${PWD}'
         volumes:
             - '.:/var/www/html'
-            # - "${MULTIMEDIA_MUSIC_FOLDER_HOST}:${MULTIMEDIA_MUSIC_FOLDER_PATH}"
-            # - "${MULTIMEDIA_VIDEO_FOLDER_HOST}:${MULTIMEDIA_VIDEO_FOLDER_PATH}"
-            # - "${MULTIMEDIA_PICTURES_FOLDER_HOST}:${MULTIMEDIA_PICTURES_FOLDER_PATH}"
+            - "${MULTIMEDIA_MUSIC_FOLDER_HOST}:${MULTIMEDIA_MUSIC_FOLDER_PATH}"
+            - "${MULTIMEDIA_VIDEO_FOLDER_HOST}:${MULTIMEDIA_VIDEO_FOLDER_PATH}"
+            - "${MULTIMEDIA_PICTURES_FOLDER_HOST}:${MULTIMEDIA_PICTURES_FOLDER_PATH}"
         networks:
             - sail
         depends_on:

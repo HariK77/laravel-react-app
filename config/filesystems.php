@@ -45,11 +45,13 @@ return [
         'pictures' => [
             'driver' => 'local',
             'root' => env('MULTIMEDIA_PICTURES_FOLDER_PATH'),
+            'throw' => false,
         ],
 
         'music' => [
             'driver' => 'local',
             'root' => env('MULTIMEDIA_MUSIC_FOLDER_PATH'),
+            'throw' => false,
         ],
 
         'videos' => [

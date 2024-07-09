@@ -4,7 +4,7 @@ import Select from "react-select";
 import { profileSchema } from "@Utils/validationSchema";
 import { Helmet } from "react-helmet";
 import { ProfileApi } from "@Api/index";
-import { ProfileContext } from "@Context/profileContext";
+import { ProfileContext } from "@Context/ProfileContext";
 import { notify } from "@Utils/toastMessages";
 import { createFormObject, getGenders, getLanguages } from "@Helpers/common";
 

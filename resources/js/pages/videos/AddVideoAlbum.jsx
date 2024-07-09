@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useFormik } from "formik";
 import { addVideoAlbumSchema } from "@Utils/validationSchema";
 import { VideoApi } from "@Api/index";
 import { notify } from "@Utils/toastMessages";
 import { createFormObject } from "@Helpers/common";
+import { VideoContext } from "@Context/VideoContext";
 
 const AddVideoAlbum = () => {
     const [isBtnDisabled, setIsBtnDisabled] = useState(false);
+    const { setVideoAlbums } = useContext(VideoContext);
+    const formRef = useRef(null);
 
     const formik = useFormik({
         initialValues: {
@@ -19,9 +22,10 @@ const AddVideoAlbum = () => {
             setIsBtnDisabled(true);
             VideoApi.addVideoAlbum(createFormObject(values))
                 .then(({ data }) => {
+                    setVideoAlbums((prevState) => [...prevState, data.data]);
                     notify(data?.message);
                     resetForm();
-                    formik.setFieldValue("thumbnail", null);
+                    formRef.current.reset();
                 })
                 .catch((error) => {
                     if (error?.errors) {
@@ -43,7 +47,12 @@ const AddVideoAlbum = () => {
             <h3>Add Video Album</h3>
             <div className="card">
                 <div className="card-body p-4">
-                    <form method="POST">
+                    <form
+                        method="POST"
+                        encType="multipart/form-data"
+                        ref={formRef}
+                        onSubmit={formik.handleSubmit}
+                    >
                         <div className="mb-2">
                             <label htmlFor="name" className="form-label">
                                 Name
@@ -117,7 +126,6 @@ const AddVideoAlbum = () => {
                         </div>
                         <button
                             type="submit"
-                            onClick={formik.handleSubmit}
                             className="btn btn-primary mt-2"
                             disabled={isBtnDisabled}
                         >

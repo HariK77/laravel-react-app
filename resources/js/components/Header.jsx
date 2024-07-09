@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { ProfileContext, authBaseObject } from "@Context/profileContext";
+import { ProfileContext, Guest } from "@Context/ProfileContext";
 import { AuthApi } from "@Api/index";
 import { deleteCookie } from "@Helpers/cookie";
 
@@ -15,7 +15,7 @@ const Header = () => {
             .then(({ data }) => {
                 deleteCookie(cookieName);
                 setProfile((prevState) => ({
-                    ...authBaseObject,
+                    ...Guest,
                 }));
                 navigate("/login");
             })

@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { Helmet } from "react-helmet";
 import { AuthApi } from "@Api/index";
-import { ProfileContext } from "@Context/profileContext";
+import { ProfileContext } from "@Context/ProfileContext";
 import { setCookie } from "@Helpers/cookie";
 import { notify } from "@Utils/toastMessages";
 
@@ -69,7 +69,7 @@ const Login = () => {
                 <div className="col-6 offset-3">
                     <div className="card p-3">
                         <div className="card-body">
-                            <form>
+                            <form method="POST" onSubmit={formik.handleSubmit}>
                                 <div className="mb-3">
                                     <label
                                         htmlFor="email"
@@ -124,7 +124,6 @@ const Login = () => {
                                 </div>
                                 <button
                                     type="submit"
-                                    onClick={formik.handleSubmit}
                                     className="btn btn-primary"
                                     disabled={isBtnDisabled}
                                 >
