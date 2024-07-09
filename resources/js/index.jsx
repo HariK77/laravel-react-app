@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import RootProvider from "@Context/rootProvider";
+import RootProvider from "@Context/RootProvider";
 import { ToastContainer } from "react-toastify";
 import "bootstrap";
 import "react-toastify/dist/ReactToastify.css";

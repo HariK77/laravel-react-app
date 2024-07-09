@@ -4,7 +4,7 @@ import { createContext, useEffect, useState } from "react";
 
 const ProfileContext = createContext();
 
-const authBaseObject = {
+const Guest = {
     id: "",
     name: "",
     email: "",
@@ -15,7 +15,7 @@ const authBaseObject = {
 };
 
 const ProfileProvider = ({ children }) => {
-    const [profile, setProfile] = useState(authBaseObject);
+    const [profile, setProfile] = useState(Guest);
     const cookieName = import.meta.env.VITE_COOKIE_NAME;
 
     useEffect(() => {
@@ -41,4 +41,4 @@ const ProfileProvider = ({ children }) => {
     );
 };
 
-export { ProfileProvider, ProfileContext, authBaseObject };
+export { ProfileProvider, ProfileContext, Guest };

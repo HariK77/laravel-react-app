@@ -1,13 +1,15 @@
-import { useState, useEffect } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { useFormik } from "formik";
 import { addVideoTrackSchema } from "@Utils/validationSchema";
 import { VideoApi } from "@Api/index";
 import { notify } from "@Utils/toastMessages";
 import { createFormObject } from "@Helpers/common";
+import { VideoContext } from "@Context/VideoContext";
 
-const AddSourceVideo = () => {
+const AddVideoTrack = () => {
     const [isBtnDisabled, setIsBtnDisabled] = useState(false);
-    const [videoAlbums, setVideoAlbums] = useState([]);
+    const { videoAlbums, setVideoTracks } = useContext(VideoContext);
+    const formRef = useRef(null);
 
     const formik = useFormik({
         initialValues: {
@@ -21,7 +23,10 @@ const AddSourceVideo = () => {
             setIsBtnDisabled(true);
             VideoApi.addVideoTrack(createFormObject(values))
                 .then(({ data }) => {
+                    setVideoTracks((prevState) => [...prevState, data.data]);
                     notify(data?.message);
+                    resetForm();
+                    formRef.current.reset();
                 })
                 .catch((error) => {
                     if (error?.errors) {
@@ -29,7 +34,7 @@ const AddSourceVideo = () => {
                             notify(error.errors[key], "error");
                         });
                     } else {
-                        notify("Validation failed", "error");
+                        notify(error.message ?? "Validation failed", "error");
                     }
                 })
                 .finally(() => {
@@ -38,28 +43,17 @@ const AddSourceVideo = () => {
         },
     });
 
-    const getVideoAlbums = () => {
-        VideoApi.getVideoAlbums()
-            .then(({ data }) => {
-                setVideoAlbums((prevState) => {
-                    return [...prevState, ...data.data];
-                });
-            })
-            .catch((error) => {
-                console.error("error", error);
-            });
-    };
-
-    useEffect(() => {
-        getVideoAlbums();
-    }, []);
-
     return (
         <div className="">
             <h3>Add Video Track</h3>
             <div className="card">
                 <div className="card-body p-4">
-                    <form method="POST" encType="multipart/form-data">
+                    <form
+                        method="POST"
+                        encType="multipart/form-data"
+                        ref={formRef}
+                        onSubmit={formik.handleSubmit}
+                    >
                         <div className="mb-2">
                             <label htmlFor="name" className="form-label">
                                 Name
@@ -100,11 +94,15 @@ const AddSourceVideo = () => {
                                 value={formik.values.video_album_id}
                             >
                                 <option>Select album</option>
-                                {videoAlbums.map((videoAlbum, index) => (
-                                    <option value={videoAlbum.id} key={index}>
-                                        {videoAlbum.name}
-                                    </option>
-                                ))}
+                                {videoAlbums &&
+                                    videoAlbums.map((videoAlbum, index) => (
+                                        <option
+                                            value={videoAlbum.id}
+                                            key={index}
+                                        >
+                                            {videoAlbum.name}
+                                        </option>
+                                    ))}
                             </select>
                             <div className="invalid-feedback">
                                 {formik.errors.video_album_id}
@@ -164,7 +162,6 @@ const AddSourceVideo = () => {
                         </div>
                         <button
                             type="submit"
-                            onClick={formik.handleSubmit}
                             className="btn btn-primary mt-2"
                             disabled={isBtnDisabled}
                         >
@@ -177,4 +174,4 @@ const AddSourceVideo = () => {
     );
 };
 
-export default AddSourceVideo;
+export default AddVideoTrack;
