@@ -22,7 +22,7 @@ class ConversionController extends ApiController
      */
     public function store(ConvertVideoTrackRequest $request, ConvertVideoTrackService $service)
     {
-        return $this->processResult($service->setvideoTrackId($request->validated('track_id'))->process());
+        return $this->processResult($service->setvideoTrackId($request->validated('track_id'))->actOn());
     }
 
     /**

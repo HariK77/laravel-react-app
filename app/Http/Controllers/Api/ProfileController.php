@@ -17,6 +17,6 @@ class ProfileController extends ApiController
 
     public function update(ProfileUpdateRequest $request, ProfileUpdateService $service): JsonResponse
     {
-        return $this->processResult($service->setRequest($request)->process());
+        return $this->processResult($service->setRequest($request)->actOn());
     }
 }

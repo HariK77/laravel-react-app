@@ -35,7 +35,7 @@ class ConvertVideoTrackService extends BaseService
         return $this;
     }
 
-    public function process(): array
+    public function actOn(): array
     {
         try {
             $videoTrack = $this->videoTrack->where('id', $this->videoTrackId)->first();

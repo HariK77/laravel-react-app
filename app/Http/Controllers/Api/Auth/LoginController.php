@@ -13,6 +13,6 @@ class LoginController extends ApiController
 {
     public function index(LoginRequest $request, LoginService $service): JsonResponse
     {
-        return $this->processResult($service->setRequest($request)->process());
+        return $this->processResult($service->setRequest($request)->actOn());
     }
 }

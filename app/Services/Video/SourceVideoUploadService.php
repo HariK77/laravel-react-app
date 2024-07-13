@@ -30,7 +30,7 @@ class SourceVideoUploadService
         return $this;
     }
 
-    public function process(): array
+    public function actOn(): array
     {
         $result = [];
         try {

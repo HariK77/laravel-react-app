@@ -26,7 +26,7 @@ export default class ApiCore {
         this.client.interceptors.response.use((response) => {
             return response;
         }, (error) => {
-            if (error.response?.data?.code === 401) {
+            if (error.response.status === 401) {
                 deleteCookie(cookieName);
             }
             if (error.response && error.response.data) {
