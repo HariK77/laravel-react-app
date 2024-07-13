@@ -30,7 +30,7 @@ class RegisterService extends BaseService
         return $this;
     }
 
-    public function process()
+    public function actOn()
     {
         try {
             $data = $this->request->validated();

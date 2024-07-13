@@ -11,6 +11,6 @@ class RegisterController extends ApiController
 {
     public function index(RegisterRequest $request, RegisterService $service): JsonResponse
     {
-        return $this->processResult($service->setRequest($request)->process());
+        return $this->processResult($service->setRequest($request)->actOn());
     }
 }

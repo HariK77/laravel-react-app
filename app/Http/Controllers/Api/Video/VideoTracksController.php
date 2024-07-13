@@ -28,7 +28,7 @@ class VideoTracksController extends ApiController
      */
     public function store(StoreVideoTrackRequest $request, StoreVideoTrackService $service)
     {
-        return $this->processResult($service->setValidatedData($request->validated())->process());
+        return $this->processResult($service->setValidatedData($request->validated())->actOn());
     }
 
     /**
@@ -49,7 +49,7 @@ class VideoTracksController extends ApiController
         VideoTrack $videoTrack,
         UpdateVideoTrackService $service
     ) {
-        return $this->processResult($service->setValidatedData($request->validated())->setVideoTrack($videoTrack)->process());
+        return $this->processResult($service->setValidatedData($request->validated())->setVideoTrack($videoTrack)->actOn());
     }
 
     /**

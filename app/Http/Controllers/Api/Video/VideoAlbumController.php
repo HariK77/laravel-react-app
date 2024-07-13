@@ -29,7 +29,7 @@ class VideoAlbumController extends ApiController
      */
     public function store(StoreVideoAlbumRequest $request, StoreVideoAlbumService $service): JsonResponse
     {
-        return $this->processResult($service->setRequest($request)->process());
+        return $this->processResult($service->setRequest($request)->actOn());
     }
 
     /**
@@ -50,7 +50,7 @@ class VideoAlbumController extends ApiController
         VideoAlbum $videoAlbum,
         UpdateVideoAlbumService $service
     ) {
-        return $this->processResult($service->setRequest($request)->setVideoAlbum($videoAlbum)->process());
+        return $this->processResult($service->setRequest($request)->setVideoAlbum($videoAlbum)->actOn());
     }
 
     /**

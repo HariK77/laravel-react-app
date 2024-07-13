@@ -32,7 +32,7 @@ class VideoController extends ApiController
      */
     public function store()
     {
-        // return $this->processResult($service->setRequest($request)->process());
+        // return $this->processResult($service->setRequest($request)->actOn());
     }
 
     /**

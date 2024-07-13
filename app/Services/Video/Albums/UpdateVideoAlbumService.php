@@ -46,7 +46,7 @@ class UpdateVideoAlbumService extends BaseService
         return $this;
     }
 
-    public function process(): array
+    public function actOn(): array
     {
         try {
             $data = $this->request->validated();

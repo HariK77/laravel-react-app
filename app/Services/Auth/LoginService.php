@@ -31,7 +31,7 @@ class LoginService extends BaseService
         return $this;
     }
 
-    public function process(): array
+    public function actOn(): array
     {
         if (!Auth::attempt($this->request->validated())) {
             $this->message = 'Invalid credentials';
